@@ -1,0 +1,28 @@
+.storybook-tab {
+  border: none;
+  font-size: .875rem;
+  line-height: 1.1125em;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: .16px;
+  padding: .5rem 1rem;
+  min-width: 8rem;
+}
+
+.storybook-tab--active {
+  font-family: 'medtronicRegular', 'Helvetica Neue', Arial, sans-serif;
+  background-color: white;
+  border-top: solid 2px var(--c-primary-6);
+  color: var(--c-grey-10);
+}
+
+.storybook-tab--normal {
+  background-color: var(--c-grey-3);
+  color: var(--c-grey-7);
+  border-left: 1px solid var(--c-grey-4);
+}
+
+.storybook-tab--normal:hover {
+    background-color: var(--c-grey-4);
+    color: var(--c-grey-8);
+}

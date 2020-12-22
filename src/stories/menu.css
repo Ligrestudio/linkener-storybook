@@ -1,0 +1,49 @@
+.menu {
+  max-width: 16rem;
+  width: fit-content;
+  background-color: var(--c-grey-10);
+  color: var(--c-grey-3);
+  border-right: 1px solid var(--c-grey-3);
+  margin: 0;
+  padding: 1em 0;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.menu__item {
+  line-height: 2rem;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+}
+
+.menu__item:hover {
+  background-color: var(--c-grey-9);
+  color: var(--c-grey-2);
+}
+
+.menu__item--selected {
+  background-color: var(--c-grey-8);
+  color: var(--c-grey-1);
+  border-left: solid .5em var(--c-primary-6);
+  padding-left: .5em;
+  font-family: 'medtronicRegular', 'Helvetica Neue', Arial, sans-serif;;
+}
+
+.menu__close-sesion {
+  margin-top: auto;
+}
+
+.menu__icon {
+  margin-right: 1.5em;
+}
+
+.menu__txt {
+  margin-right: 2em;
+}
+
+.menu__icon--expand {
+  margin-left: auto;
+}

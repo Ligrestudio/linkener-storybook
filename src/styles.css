@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(styles/reset.css);
+@import url(styles/vars.css);
+@import url(styles/type.css);
+@import url(styles/fontello.css);
+
+.flex {
+  display: flex;
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button--ico {
+  border: none;
+  background: none;
+  height: 3rem;
+  width: 3rem;
+}
+
+.button--ico:hover {
+  background-color: var(--c-grey-2);
+}

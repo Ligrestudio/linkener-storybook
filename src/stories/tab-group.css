@@ -1,0 +1,26 @@
+.tab-group {
+  padding: 0 2rem;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tab-group::-webkit-scrollbar {
+  display: none;
+}
+
+.tab__add {
+    color: var(--c-grey-7);
+    margin: 0 .5rem;
+  }
+
+.tab__add:hover {
+    color: var(--c-grey-10);
+}
