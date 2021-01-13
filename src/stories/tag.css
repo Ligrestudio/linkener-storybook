@@ -1,0 +1,48 @@
+.storybook-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 1.5rem;
+    line-height: 1.5em;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    margin: .5rem;
+    padding: 0 0.75rem 0 0.75rem;
+}
+  
+  .tag--blue {
+    color: var(--c-tag-blue-txt);
+    background-color: var(--c-tag-blue-bg);
+}
+
+.tag--green {
+    color: var(--c-tag-green-txt);
+    background-color: var(--c-tag-green-bg);
+}
+
+.tag--grey {
+    color: var(--c-tag-grey-txt);
+    background-color: var(--c-tag-grey-bg);
+}
+
+.tag--orange {
+    color: var(--c-tag-orange-txt);
+    background-color: var(--c-tag-orange-bg);
+}
+
+.tag--purple {
+    color: var(--c-tag-purple-txt);
+    background-color: var(--c-tag-purple-bg);
+}
+
+.tag--red {
+    color: var(--c-tag-red-txt);
+    background-color: var(--c-tag-red-bg);
+}
+
+.tag--yellow {
+    color: var(--c-tag-yellow-txt);
+    background-color: var(--c-tag-yellow-bg);
+}

@@ -1,3 +1,5 @@
+/* cambiar boton añadir tab */
+
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({

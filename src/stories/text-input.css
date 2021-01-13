@@ -1,0 +1,38 @@
+.sb-text-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-text {
+    background-color: var(--c-grey-2);
+    color: var(--c-grey-10);
+    border: none;
+    border-bottom: solid 1px var(--c-grey-10);
+    height: 2.5rem;
+    padding: 0 1rem;
+}
+
+.form-label {
+    margin-bottom: .5rem;
+    color: var(--c-grey-8);
+}
+
+.form-helper {
+    margin-top: .25rem;
+    color: var(--c-grey-8);
+}
+
+.sb-text-input.disabled .input-text,
+.sb-text-input.disabled .form-label,
+.sb-text-input.disabled .form-helper {
+    color: var(--c-grey-5);
+}
+
+.input-text:disabled {
+    background-color: var(--c-grey-2);
+    border-bottom: solid 1px var(--c-grey-2);
+}
+
+.input-text:disabled::placeholder {
+    color: var(--c-grey-4);
+}

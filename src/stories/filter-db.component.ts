@@ -1,3 +1,5 @@
+/* terminar */
+
 import {
 Component,
 Input,

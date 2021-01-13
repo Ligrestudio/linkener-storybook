@@ -92,7 +92,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-642c6c4e474cd5a0ac760dfda26b2fc9",
+            "id": "component-ButtonComponent-8456b5c695e036c8be031e3698d34a88",
             "file": "src/stories/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -104,42 +104,49 @@
                 "./button.css"
             ],
             "styles": [],
-            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "template": "<button class=\"txt-01\"   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [disabled]=\"disabled\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n {{ label }}\n </button>",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
                 {
                     "name": "backgroundColor",
                     "description": "<p>What background color to use</p>\n",
-                    "line": 26,
+                    "line": 36,
                     "type": "string"
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "line": 24,
+                    "type": "boolean"
                 },
                 {
                     "name": "label",
                     "defaultValue": "'Button'",
                     "description": "<p>Button contents</p>\n",
-                    "line": 40
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 20
+                    "line": 50
                 },
                 {
                     "name": "size",
-                    "defaultValue": "'medium'",
+                    "defaultValue": "'large'",
                     "description": "<p>How large should the button be?</p>\n",
-                    "line": 32,
-                    "type": "\"small\" | \"medium\" | \"large\""
+                    "line": 42,
+                    "type": "string"
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'storybook-button--primary'",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 30,
+                    "type": "string"
                 }
             ],
             "outputsClass": [
                 {
                     "name": "onClick",
-                    "defaultValue": "new EventEmitter<Event>()",
+                    "defaultValue": "new EventEmitter < Event > ()",
                     "description": "<p>Optional click handler</p>\n",
-                    "line": 46,
+                    "line": 56,
                     "type": "EventEmitter"
                 }
             ],
@@ -150,11 +157,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button class=\"txt-01\"\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [disabled]=\"disabled\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n  {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n\n  @Input() \n  disabled: boolean = false;\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  type: string = 'storybook-button--primary';\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor ? : string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: string = 'large';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n\n  public get classes(): string[] {\n    /* const type = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary'; */\n    let story;\n    switch (this.type) {\n      case 'primary':\n        story = 'storybook-button--primary'\n        break;\n      case 'secondary':\n        story = 'storybook-button--secondary'\n        break;\n      case 'tertiary':\n        story = 'storybook-button--tertiary'\n        break;\n      case 'ghost':\n        story = 'storybook-button--ghost'\n        break;\n      case 'danger':\n        story = 'storybook-button--danger'\n        break;\n      case 'tertiary-danger':\n        story = 'storybook-button--tertiary-danger'\n        break;\n      case 'ghost-danger':\n        story = 'storybook-button--ghost-danger'\n        break;\n\n      default:\n        story = 'storybook-button--primary'\n        break;\n    }\n    return ['storybook-button', `storybook-button--${this.size}`, story];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "data": ".storybook-button {\n  display: inline-flex;\n  outline: none;\n  flex-shrink: 0;\n  box-sizing: border-box;\n  font-size: .875rem;\n  text-align: left;\n  vertical-align: top;\n  text-decoration: none;\n  cursor: pointer;\n  line-height: 1.29rem;\n  border: 1px solid transparent;\n  color: var(--c-grey-1);\n}\n\n.storybook-button--primary {\n  background-color: var(--c-primary-7);\n  border: 1px solid var(--c-primary-7);\n}\n\n.storybook-button--primary:hover {\n  background-color: var(--c-primary-8);\n  border: 1px solid var(--c-primary-8);\n}\n\n.storybook-button--primary:active {\n  background-color: var(--c-primary-9);\n  border: 1px solid var(--c-primary-9);\n}\n\n.storybook-button--primary:disabled {\n  color: var(--c-grey-5);\n  background-color: var(--c-grey-4);\n  border: 1px solid var(--c-grey-4);\n  cursor: not-allowed;\n}\n\n.storybook-button--secondary {\n  background-color: var(--c-grey-6);\n  border: 1px solid var(--c-grey-6);\n}\n\n.storybook-button--secondary:hover {\n  background-color: var(--c-grey-7);\n  border: 1px solid var(--c-grey-7);\n}\n\n.storybook-button--secondary:active {\n  background-color: var(--c-grey-8);\n  border: 1px solid var(--c-grey-8);\n}\n\n.storybook-button--secondary:disabled {\n  color: var(--c-grey-5);\n  background-color: var(--c-grey-4);\n  border: 1px solid var(--c-grey-4);\n  cursor: not-allowed;\n}\n\n.storybook-button--tertiary {\n  color: var(--c-primary-7);\n  background-color: transparent;\n  border: 1px solid var(--c-primary-7);\n}\n\n.storybook-button--tertiary:hover {\n  color: var(--c-grey-1);\n  background-color: var(--c-primary-8);\n  border: 1px solid var(--c-primary-8);\n}\n\n.storybook-button--tertiary:active {\n  color: var(--c-grey-1);\n  background-color: var(--c-primary-9);\n  border: 1px solid var(--c-primary-9);\n}\n\n.storybook-button--tertiary:disabled {\n  color: var(--c-grey-5);\n  border: 1px solid var(--c-grey-4);\n  cursor: not-allowed;\n}\n\n.storybook-button--ghost {\n  color: var(--c-primary-7);\n  background-color: transparent;\n  padding: 0 2rem;\n}\n\n.storybook-button--ghost:hover {\n  background-color: var(--c-grey-2);\n  border: 1px solid var(--c-grey-2);\n}\n\n.storybook-button--ghost:active {\n  background-color: var(--c-grey-3);\n  border: 1px solid var(--c-grey-3);\n}\n\n.storybook-button--ghost:disabled {\n  color: var(--c-grey-5);\n  cursor: not-allowed;\n}\n\n.storybook-button--danger {\n  background-color: var(--c-danger-1);\n  border: 1px solid var(--c-danger-1);\n}\n\n.storybook-button--danger:hover {\n  background-color: var(--c-danger-2);\n  border: 1px solid var(--c-danger-2);\n}\n\n.storybook-button--danger:active {\n  background-color: var(--c-danger-3);\n  border: 1px solid var(--c-danger-3);\n}\n\n.storybook-button--danger:disabled {\n  color: var(--c-grey-5);\n  background-color: var(--c-grey-4);\n  border: 1px solid var(--c-grey-4);\n  cursor: not-allowed;\n}\n\n.storybook-button--tertiary-danger {\n  color: var(--c-danger-1);\n  background-color: transparent;\n  border: 1px solid var(--c-danger-1);\n}\n\n.storybook-button--tertiary-danger:hover {\n  color: var(--c-grey-1);\n  background-color: var(--c-danger-2);\n  border: 1px solid var(--c-danger-2);\n}\n\n.storybook-button--tertiary-danger:active {\n  background-color: var(--c-danger-3);\n  border: 1px solid var(--c-danger-3);\n}\n\n.storybook-button--tertiary-danger:disabled {\n  color: var(--c-grey-5);\n  border: 1px solid var(--c-grey-4);\n  cursor: not-allowed;\n}\n\n.storybook-button--ghost-danger {\n  color: var(--c-danger-1);\n  background-color: transparent;\n  border: transparent;\n  padding: 0 2rem;\n}\n\n.storybook-button--ghost-danger:hover {\n  color: var(--c-grey-1);\n  background-color: var(--c-danger-2);\n  border: 1px solid var(--c-danger-2);\n}\n\n.storybook-button--ghost-danger:active {\n  background-color: var(--c-danger-3);\n  border: 1px solid var(--c-danger-3);\n}\n\n.storybook-button--ghost-danger:disabled {\n  color: var(--c-grey-5);\n  cursor: not-allowed;\n}\n\n.storybook-button--small {\n  min-height: 2rem;\n  padding: calc(.375rem - 2px) 60px calc(.365rem - 3px) 12px;\n  min-width: 7rem;\n  max-width: 20rem;\n}\n.storybook-button--medium {\n  min-height: 2.25rem;\n  padding: 10px 60px calc(.865rem - 3px) 12px;\n  min-width: 7rem;\n  max-width: 20rem;\n}\n.storybook-button--large {\n  min-height: 3rem;\n  padding: 13px 60px calc(.875rem - 3px) 15px;\n  min-width: 8rem;\n  max-width: 20rem;\n}\n\n.storybook-button--full-bleed {\n  min-height: 4rem;\n  padding: calc(.875rem - 3px) 63px calc(.875rem - 3px) 15px;\n  width: 100%;\n}",
                     "styleUrl": "./button.css"
                 }
             ],
@@ -166,7 +173,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 48
+                        "line": 59
                     }
                 }
             }
@@ -273,7 +280,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".menu {\n  max-width: 16rem;\n  width: fit-content;\n  background-color: var(--c-grey-10);\n  color: var(--c-grey-3);\n  border-right: 1px solid var(--c-grey-3);\n  margin: 0;\n  padding: 1em 0;\n  height: 100%;\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n}\n\n.menu__item {\n  line-height: 2rem;\n  padding: 0 1em;\n  display: flex;\n  align-items: center;\n}\n\n.menu__item:hover {\n  background-color: var(--c-grey-9);\n  color: var(--c-grey-2);\n}\n\n.menu__item--selected {\n  background-color: var(--c-grey-8);\n  color: var(--c-grey-1);\n  border-left: solid .5em var(--c-primary-6);\n  padding-left: .5em;\n  font-family: 'medtronicRegular', 'Helvetica Neue', Arial, sans-serif;;\n}\n\n.menu__close-sesion {\n  margin-top: auto;\n}\n\n.menu__icon {\n  margin-right: 1.5em;\n}\n\n.menu__txt {\n  margin-right: 2em;\n}\n\n.menu__icon--expand {\n  margin-left: auto;\n}\n",
+                    "data": ".menu {\n  max-width: 16rem;\n  width: fit-content;\n  background-color: var(--c-grey-10);\n  color: var(--c-grey-3);\n  border-right: 1px solid var(--c-grey-3);\n  margin: 0;\n  padding: 1em 0;\n  height: 100%;\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n}\n\n.menu__item {\n  line-height: 2rem;\n  padding: 0 1em;\n  display: flex;\n  align-items: center;\n}\n\n.menu__item:hover {\n  background-color: var(--c-grey-9);\n  color: var(--c-grey-2);\n}\n\n.menu__item--selected {\n  background-color: var(--c-grey-8);\n  color: var(--c-grey-1);\n  border-left: solid .5em var(--c-primary-7);\n  padding-left: .5em;\n  font-family: 'medtronicRegular', 'Helvetica Neue', Arial, sans-serif;;\n}\n\n.menu__close-sesion {\n  margin-top: auto;\n}\n\n.menu__icon {\n  margin-right: 1.5em;\n}\n\n.menu__txt {\n  margin-right: 2em;\n}\n\n.menu__icon--expand {\n  margin-left: auto;\n}\n",
                     "styleUrl": "./menu.css"
                 }
             ],
@@ -450,6 +457,152 @@
                 }
             ],
             "stylesData": ""
+        },
+        {
+            "name": "TagComponent",
+            "id": "component-TagComponent-4e90746279fbb2de5c0ebe7229397d4c",
+            "file": "src/stories/tag.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-tag",
+            "styleUrls": [
+                "./tag.css"
+            ],
+            "styles": [],
+            "template": "<span class=\"txt-label\"     [ngClass]=\"classes\"\n   >\n   {{ label }}\n </span>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 32
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'storybook-tag--primary'",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 24,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter < Event > ()",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 38,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-tag',\n  template: ` <span class=\"txt-label\"\n      [ngClass]=\"classes\"\n    >\n    {{ label }}\n  </span>`,\n  styleUrls: ['./tag.css'],\n})\nexport default class TagComponent {\n\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  type: string = 'storybook-tag--primary';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n  public get classes(): string[] {\n    /* const type = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary'; */\n    let story;\n    switch (this.type) {\n      case 'blue':\n        story = 'tag--blue'\n        break;\n      case 'green':\n        story = 'tag--green'\n        break;\n      case 'grey':\n        story = 'tag--grey'\n        break;\n      case 'orange':\n        story = 'tag--orange'\n        break;\n      case 'purple':\n        story = 'tag--purple'\n        break;\n      case 'red':\n        story = 'tag--red'\n        break;\n      case 'yellow':\n        story = 'tag--yellow'\n        break;\n\n      default:\n        story = 'tag--grey'\n        break;\n    }\n    return ['storybook-tag', story];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./tag.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 40
+                    }
+                }
+            }
+        },
+        {
+            "name": "TextInput",
+            "id": "component-TextInput-e1528a9ae500649481f1edfb8a21fb21",
+            "file": "src/stories/text-input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-text-input",
+            "styleUrls": [
+                "./text-input.css"
+            ],
+            "styles": [],
+            "template": "<p class=\"sb-text-input\">\n<label class=\"txt-label form-label\" for=\"fname\">{{ label }}</label>\n<input class=\"input-text txt-01\" [disabled]=\"disabled\" type=\"text\" id=\"fname\" name=\"fname\" placeholder= '{{ placeholder }}' >\n<small class=\"txt-helper form-helper\"> {{ helper }} </small>\n</p>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "line": 23,
+                    "type": "boolean"
+                },
+                {
+                    "name": "helper",
+                    "defaultValue": "'Text input helper'",
+                    "line": 32
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Text input label'",
+                    "line": 26
+                },
+                {
+                    "name": "light",
+                    "defaultValue": "false",
+                    "line": 35
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "'Text input placeholder'",
+                    "line": 29
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'large'",
+                    "line": 38,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter < Event > ()",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 51,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-text-input',\n  template: `\n    <p class=\"sb-text-input\">\n    <label class=\"txt-label form-label\" for=\"fname\">{{ label }}</label>\n    <input class=\"input-text txt-01\" [disabled]=\"disabled\" type=\"text\" id=\"fname\" name=\"fname\" placeholder= '{{ placeholder }}' >\n    <small class=\"txt-helper form-helper\"> {{ helper }} </small>\n    </p>`,\n  styleUrls: ['./text-input.css'],\n})\nexport default class TextInput {\n\n  @Input()\n  disabled: boolean = false;\n\n  @Input()\n  label = 'Text input label';\n\n  @Input()\n  placeholder = 'Text input placeholder';\n\n  @Input()\n  helper = 'Text input helper';\n\n  @Input()\n  light = false;\n\n  @Input()\n  size: string = 'large';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".sb-text-input {\n    display: flex;\n    flex-direction: column;\n}\n\n.input-text {\n    background-color: var(--c-grey-2);\n    color: var(--c-grey-10);\n    border: none;\n    border-bottom: solid 1px var(--c-grey-10);\n    height: 2.5rem;\n    padding: 0 1rem;\n}\n\n.form-label {\n    margin-bottom: .5rem;\n    color: var(--c-grey-8);\n}\n\n.form-helper {\n    margin-top: .25rem;\n    color: var(--c-grey-8);\n}\n\n.sb-text-input.disabled .input-text,\n.sb-text-input.disabled .form-label,\n.sb-text-input.disabled .form-helper {\n    color: var(--c-grey-5);\n}\n\n.input-text:disabled {\n    background-color: var(--c-grey-2);\n    border-bottom: solid 1px var(--c-grey-2);\n}\n\n.input-text:disabled::placeholder {\n    color: var(--c-grey-4);\n}",
+                    "styleUrl": "./text-input.css"
+                }
+            ],
+            "stylesData": ""
         }
     ],
     "modules": [
@@ -535,12 +688,28 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Blue",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/test.ts",
                 "type": "",
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "Danger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "environment",
@@ -563,6 +732,46 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Filter-db.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "FullBleed",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Ghost",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "GhostDanger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Green",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Grey",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -591,6 +800,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Medium",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "MenuExpanded",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -599,10 +816,34 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Orange",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Purple",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Red",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -657,17 +898,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Filter-db.stories.ts",
-                "type": "Story<FilterDb>",
-                "defaultValue": "(args: FilterDb) => ({\n  component: FilterDb,\n  props: args,\n})"
+                "file": "src/stories/Header.stories.ts",
+                "type": "Story<Header>",
+                "defaultValue": "(args: Header) => ({\n  component: Header,\n  props: args,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
-                "type": "Story<Header>",
-                "defaultValue": "(args: Header) => ({\n  component: Header,\n  props: args,\n})"
+                "file": "src/stories/Filter-db.stories.ts",
+                "type": "Story<FilterDb>",
+                "defaultValue": "(args: FilterDb) => ({\n  component: FilterDb,\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -681,14 +922,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
-                "type": "Story<Page>",
-                "defaultValue": "(args: Page) => ({\n  component: Page,\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Tab-group.stories.ts",
                 "type": "Story<TabGroup>",
                 "defaultValue": "(args: TabGroup) => ({\n  component: TabGroup,\n})"
@@ -697,9 +930,73 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "Story<Page>",
+                "defaultValue": "(args: Page) => ({\n  component: Page,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/Tab.stories.ts",
                 "type": "Story<Tab>",
                 "defaultValue": "(args: Tab) => ({\n  component: Tab,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/TextInput.stories.ts",
+                "type": "Story<TextInput>",
+                "defaultValue": "(args: TextInput) => ({\n  component: TextInput,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
+                "type": "Story<Tag>",
+                "defaultValue": "(args: Tag) => ({\n    component: Tag,\n    props: args,\n  })"
+            },
+            {
+                "name": "Tertiary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "TertiaryDanger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "TextInputLight",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/TextInput.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "TextInputNormal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/TextInput.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Yellow",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/tag.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -732,6 +1029,72 @@
                     "defaultValue": "(args: Tab) => ({\n  component: Tab,\n  props: args,\n})"
                 }
             ],
+            "src/stories/tag.stories.ts": [
+                {
+                    "name": "Blue",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Green",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Grey",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Orange",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Purple",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Red",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "Story<Tag>",
+                    "defaultValue": "(args: Tag) => ({\n    component: Tag,\n    props: args,\n  })"
+                },
+                {
+                    "name": "Yellow",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/tag.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -747,6 +1110,104 @@
                     "subtype": "variable",
                     "file": "src/test.ts",
                     "type": "literal type"
+                }
+            ],
+            "src/stories/Button.stories.ts": [
+                {
+                    "name": "Danger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "FullBleed",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Ghost",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "GhostDanger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Medium",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "Story<Button>",
+                    "defaultValue": "(args: Button) => ({\n  component: Button,\n  props: args,\n})"
+                },
+                {
+                    "name": "Tertiary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "TertiaryDanger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
                 }
             ],
             "src/environments/environment.ts": [
@@ -785,48 +1246,6 @@
                     "file": "src/stories/Filter-db.stories.ts",
                     "type": "Story<FilterDb>",
                     "defaultValue": "(args: FilterDb) => ({\n  component: FilterDb,\n  props: args,\n})"
-                }
-            ],
-            "src/stories/Button.stories.ts": [
-                {
-                    "name": "Large",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "type": "Story<Button>",
-                    "defaultValue": "(args: Button) => ({\n  component: Button,\n  props: args,\n})"
                 }
             ],
             "src/stories/Header.stories.ts": [
@@ -900,6 +1319,32 @@
                     "type": "Story<TabGroup>",
                     "defaultValue": "(args: TabGroup) => ({\n  component: TabGroup,\n})"
                 }
+            ],
+            "src/stories/TextInput.stories.ts": [
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/TextInput.stories.ts",
+                    "type": "Story<TextInput>",
+                    "defaultValue": "(args: TextInput) => ({\n  component: TextInput,\n  props: args,\n})"
+                },
+                {
+                    "name": "TextInputLight",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/TextInput.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "TextInputNormal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/TextInput.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -921,7 +1366,7 @@
         ]
     },
     "coverage": {
-        "count": 5,
+        "count": 4,
         "status": "low",
         "files": [
             {
@@ -967,7 +1412,57 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "Danger",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FullBleed",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Ghost",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "GhostDanger",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Medium",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1008,6 +1503,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Tertiary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TertiaryDanger",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1143,13 +1658,43 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/TextInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/TextInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextInputLight",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/TextInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextInputNormal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/button.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
-                "status": "very-good"
+                "coveragePercent": 71,
+                "coverageCount": "5/7",
+                "status": "good"
             },
             {
                 "filePath": "src/stories/filter-db.component.ts",
@@ -1204,6 +1749,104 @@
                 "coveragePercent": 80,
                 "coverageCount": "4/5",
                 "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/tag.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TagComponent",
+                "coveragePercent": 75,
+                "coverageCount": "3/4",
+                "status": "good"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Blue",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Green",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Grey",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Orange",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Purple",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Red",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Yellow",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/text-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TextInput",
+                "coveragePercent": 12,
+                "coverageCount": "1/8",
+                "status": "low"
             },
             {
                 "filePath": "src/test.ts",

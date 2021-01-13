@@ -1,30 +1,196 @@
 .storybook-button {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  border: 0;
-  border-radius: 3em;
+  display: inline-flex;
+  outline: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  font-size: .875rem;
+  text-align: left;
+  vertical-align: top;
+  text-decoration: none;
   cursor: pointer;
-  display: inline-block;
-  line-height: 1;
+  line-height: 1.29rem;
+  border: 1px solid transparent;
+  color: var(--c-grey-1);
 }
+
 .storybook-button--primary {
-  color: white;
-  background-color: #1ea7fd;
+  background-color: var(--c-primary-7);
+  border: 1px solid var(--c-primary-7);
 }
+
+.storybook-button--primary:hover {
+  background-color: var(--c-primary-8);
+  border: 1px solid var(--c-primary-8);
+}
+
+.storybook-button--primary:active {
+  background-color: var(--c-primary-9);
+  border: 1px solid var(--c-primary-9);
+}
+
+.storybook-button--primary:disabled {
+  color: var(--c-grey-5);
+  background-color: var(--c-grey-4);
+  border: 1px solid var(--c-grey-4);
+  cursor: not-allowed;
+}
+
 .storybook-button--secondary {
-  color: #333;
-  background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  background-color: var(--c-grey-6);
+  border: 1px solid var(--c-grey-6);
 }
+
+.storybook-button--secondary:hover {
+  background-color: var(--c-grey-7);
+  border: 1px solid var(--c-grey-7);
+}
+
+.storybook-button--secondary:active {
+  background-color: var(--c-grey-8);
+  border: 1px solid var(--c-grey-8);
+}
+
+.storybook-button--secondary:disabled {
+  color: var(--c-grey-5);
+  background-color: var(--c-grey-4);
+  border: 1px solid var(--c-grey-4);
+  cursor: not-allowed;
+}
+
+.storybook-button--tertiary {
+  color: var(--c-primary-7);
+  background-color: transparent;
+  border: 1px solid var(--c-primary-7);
+}
+
+.storybook-button--tertiary:hover {
+  color: var(--c-grey-1);
+  background-color: var(--c-primary-8);
+  border: 1px solid var(--c-primary-8);
+}
+
+.storybook-button--tertiary:active {
+  color: var(--c-grey-1);
+  background-color: var(--c-primary-9);
+  border: 1px solid var(--c-primary-9);
+}
+
+.storybook-button--tertiary:disabled {
+  color: var(--c-grey-5);
+  border: 1px solid var(--c-grey-4);
+  cursor: not-allowed;
+}
+
+.storybook-button--ghost {
+  color: var(--c-primary-7);
+  background-color: transparent;
+  padding: 0 2rem;
+}
+
+.storybook-button--ghost:hover {
+  background-color: var(--c-grey-2);
+  border: 1px solid var(--c-grey-2);
+}
+
+.storybook-button--ghost:active {
+  background-color: var(--c-grey-3);
+  border: 1px solid var(--c-grey-3);
+}
+
+.storybook-button--ghost:disabled {
+  color: var(--c-grey-5);
+  cursor: not-allowed;
+}
+
+.storybook-button--danger {
+  background-color: var(--c-danger-1);
+  border: 1px solid var(--c-danger-1);
+}
+
+.storybook-button--danger:hover {
+  background-color: var(--c-danger-2);
+  border: 1px solid var(--c-danger-2);
+}
+
+.storybook-button--danger:active {
+  background-color: var(--c-danger-3);
+  border: 1px solid var(--c-danger-3);
+}
+
+.storybook-button--danger:disabled {
+  color: var(--c-grey-5);
+  background-color: var(--c-grey-4);
+  border: 1px solid var(--c-grey-4);
+  cursor: not-allowed;
+}
+
+.storybook-button--tertiary-danger {
+  color: var(--c-danger-1);
+  background-color: transparent;
+  border: 1px solid var(--c-danger-1);
+}
+
+.storybook-button--tertiary-danger:hover {
+  color: var(--c-grey-1);
+  background-color: var(--c-danger-2);
+  border: 1px solid var(--c-danger-2);
+}
+
+.storybook-button--tertiary-danger:active {
+  background-color: var(--c-danger-3);
+  border: 1px solid var(--c-danger-3);
+}
+
+.storybook-button--tertiary-danger:disabled {
+  color: var(--c-grey-5);
+  border: 1px solid var(--c-grey-4);
+  cursor: not-allowed;
+}
+
+.storybook-button--ghost-danger {
+  color: var(--c-danger-1);
+  background-color: transparent;
+  border: transparent;
+  padding: 0 2rem;
+}
+
+.storybook-button--ghost-danger:hover {
+  color: var(--c-grey-1);
+  background-color: var(--c-danger-2);
+  border: 1px solid var(--c-danger-2);
+}
+
+.storybook-button--ghost-danger:active {
+  background-color: var(--c-danger-3);
+  border: 1px solid var(--c-danger-3);
+}
+
+.storybook-button--ghost-danger:disabled {
+  color: var(--c-grey-5);
+  cursor: not-allowed;
+}
+
 .storybook-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
+  min-height: 2rem;
+  padding: calc(.375rem - 2px) 60px calc(.365rem - 3px) 12px;
+  min-width: 7rem;
+  max-width: 20rem;
 }
 .storybook-button--medium {
-  font-size: 14px;
-  padding: 11px 20px;
+  min-height: 2.25rem;
+  padding: 10px 60px calc(.865rem - 3px) 12px;
+  min-width: 7rem;
+  max-width: 20rem;
 }
 .storybook-button--large {
-  font-size: 16px;
-  padding: 12px 24px;
+  min-height: 3rem;
+  padding: 13px 60px calc(.875rem - 3px) 15px;
+  min-width: 8rem;
+  max-width: 20rem;
+}
+
+.storybook-button--full-bleed {
+  min-height: 4rem;
+  padding: calc(.875rem - 3px) 63px calc(.875rem - 3px) 15px;
+  width: 100%;
 }

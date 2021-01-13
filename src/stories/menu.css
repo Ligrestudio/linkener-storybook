@@ -27,7 +27,7 @@
 .menu__item--selected {
   background-color: var(--c-grey-8);
   color: var(--c-grey-1);
-  border-left: solid .5em var(--c-primary-6);
+  border-left: solid .5em var(--c-primary-7);
   padding-left: .5em;
   font-family: 'medtronicRegular', 'Helvetica Neue', Arial, sans-serif;;
 }
