@@ -14,7 +14,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export default class TabComponent {
   /**
-   * Is this the principal call to action on the page?
+   * Tab activa
    */
   @Input()
   active = false;

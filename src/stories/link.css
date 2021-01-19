@@ -1,0 +1,42 @@
+.storybook-link {
+  font-size: .875rem;
+  line-height: 1.1125em;
+  font-weight: 600;
+  letter-spacing: .16px;
+  color: var(--c-primary-7);
+}
+
+.storybook-link:hover {
+  text-decoration: underline;
+}
+
+.storybook-link:active {
+  text-decoration: underline;
+  color: var(--c-grey-8);
+}
+
+.storybook-link:visited {
+  color: var(--c-secondary-5);
+}
+
+.storybook-link:disabled {
+  color: var(--c-grey-4);
+}
+
+.storybook-link--inline {
+  text-decoration: underline;
+}
+
+.storybook-link--small {
+  font-size: .75rem;
+  line-height: 1em;
+  font-weight: 600;
+  letter-spacing: .32px;
+}
+
+.storybook-link--large {
+  font-size: 1rem;
+  line-height: 1.375em;
+  font-weight: 600;
+  letter-spacing: 0;
+}

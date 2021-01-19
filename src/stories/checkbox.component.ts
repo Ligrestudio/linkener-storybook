@@ -22,7 +22,7 @@ import {
 export default class CheckboxComponent {
 
   /**
-   * Is this the principal call to action on the page?
+   * 
    */
   @Input()
   type: string = 'storybook-checkbox--normal';

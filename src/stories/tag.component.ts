@@ -18,13 +18,13 @@ export default class TagComponent {
 
 
   /**
-   * Is this the principal call to action on the page?
+   * Usar tag grey por defecto. Los tags de colores están preparados para utilizar inline en tablas. 
    */
   @Input()
   type: string = 'storybook-tag--primary';
 
   /**
-   * Button contents
+   * Tag contents
    *
    * @required
    */

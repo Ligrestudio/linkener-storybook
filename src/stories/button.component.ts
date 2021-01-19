@@ -24,19 +24,23 @@ export default class ButtonComponent {
   disabled: boolean = false;
 
   /**
-   * Is this the principal call to action on the page?
+   * Primary: utilizar para acción principal, una sola vez por acción o pantalla.
+   * Secondary: utilizar solo como acompañamiento del tipo Primary, y solo para acciones secundarias. 
+   * Tertiary: como acompañamiento de Primary si hay más de una acción no destructiva, y solo para acciones menos importantes. Utilizar Tertiary o Ghost cuando hay más de un CTA en una sola pantalla.
+   * Danger: para acciones destructivas. 
+   * Ghost: para las acciones menos destacadas. Los botones-icono tienen el tipo Ghost.
    */
   @Input()
   type: string = 'storybook-button--primary';
 
   /**
-   * What background color to use
+   * Dejar el color seleccionado por el tipo
    */
   @Input()
   backgroundColor ? : string;
 
   /**
-   * How large should the button be?
+   * Large por defecto. Small y Medium para botones en línea con otros componentes de diferente tamaño, o si no hay suficiente esacio vertical. Full bleed para botones que necesitan todo el espacio vertical (individual o compartido), por ejemplo en modales o paneles laterales.
    */
   @Input()
   size: string = 'large';

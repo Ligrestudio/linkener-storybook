@@ -92,7 +92,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-8456b5c695e036c8be031e3698d34a88",
+            "id": "component-ButtonComponent-0ba7c822876b446b72f611c1c1e5f967",
             "file": "src/stories/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -110,8 +110,8 @@
             "inputsClass": [
                 {
                     "name": "backgroundColor",
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 36,
+                    "description": "<p>Dejar el color seleccionado por el tipo</p>\n",
+                    "line": 40,
                     "type": "string"
                 },
                 {
@@ -124,20 +124,20 @@
                     "name": "label",
                     "defaultValue": "'Button'",
                     "description": "<p>Button contents</p>\n",
-                    "line": 50
+                    "line": 54
                 },
                 {
                     "name": "size",
                     "defaultValue": "'large'",
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 42,
+                    "description": "<p>Large por defecto. Small y Medium para botones en línea con otros componentes de diferente tamaño, o si no hay suficiente esacio vertical. Full bleed para botones que necesitan todo el espacio vertical (individual o compartido), por ejemplo en modales o paneles laterales.</p>\n",
+                    "line": 46,
                     "type": "string"
                 },
                 {
                     "name": "type",
                     "defaultValue": "'storybook-button--primary'",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 30,
+                    "description": "<p>Primary: utilizar para acción principal, una sola vez por acción o pantalla.\nSecondary: utilizar solo como acompañamiento del tipo Primary, y solo para acciones secundarias. \nTertiary: como acompañamiento de Primary si hay más de una acción no destructiva, y solo para acciones menos importantes. Utilizar Tertiary o Ghost cuando hay más de un CTA en una sola pantalla.\nDanger: para acciones destructivas. \nGhost: para las acciones menos destacadas. Los botones-icono tienen el tipo Ghost.</p>\n",
+                    "line": 34,
                     "type": "string"
                 }
             ],
@@ -146,7 +146,7 @@
                     "name": "onClick",
                     "defaultValue": "new EventEmitter < Event > ()",
                     "description": "<p>Optional click handler</p>\n",
-                    "line": 56,
+                    "line": 60,
                     "type": "EventEmitter"
                 }
             ],
@@ -157,7 +157,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button class=\"txt-01\"\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [disabled]=\"disabled\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n  {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n\n  @Input() \n  disabled: boolean = false;\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  type: string = 'storybook-button--primary';\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor ? : string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: string = 'large';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n\n  public get classes(): string[] {\n    /* const type = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary'; */\n    let story;\n    switch (this.type) {\n      case 'primary':\n        story = 'storybook-button--primary'\n        break;\n      case 'secondary':\n        story = 'storybook-button--secondary'\n        break;\n      case 'tertiary':\n        story = 'storybook-button--tertiary'\n        break;\n      case 'ghost':\n        story = 'storybook-button--ghost'\n        break;\n      case 'danger':\n        story = 'storybook-button--danger'\n        break;\n      case 'tertiary-danger':\n        story = 'storybook-button--tertiary-danger'\n        break;\n      case 'ghost-danger':\n        story = 'storybook-button--ghost-danger'\n        break;\n\n      default:\n        story = 'storybook-button--primary'\n        break;\n    }\n    return ['storybook-button', `storybook-button--${this.size}`, story];\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button class=\"txt-01\"\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [disabled]=\"disabled\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n  {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n\n  @Input() \n  disabled: boolean = false;\n\n  /**\n   * Primary: utilizar para acción principal, una sola vez por acción o pantalla.\n   * Secondary: utilizar solo como acompañamiento del tipo Primary, y solo para acciones secundarias. \n   * Tertiary: como acompañamiento de Primary si hay más de una acción no destructiva, y solo para acciones menos importantes. Utilizar Tertiary o Ghost cuando hay más de un CTA en una sola pantalla.\n   * Danger: para acciones destructivas. \n   * Ghost: para las acciones menos destacadas. Los botones-icono tienen el tipo Ghost.\n   */\n  @Input()\n  type: string = 'storybook-button--primary';\n\n  /**\n   * Dejar el color seleccionado por el tipo\n   */\n  @Input()\n  backgroundColor ? : string;\n\n  /**\n   * Large por defecto. Small y Medium para botones en línea con otros componentes de diferente tamaño, o si no hay suficiente esacio vertical. Full bleed para botones que necesitan todo el espacio vertical (individual o compartido), por ejemplo en modales o paneles laterales.\n   */\n  @Input()\n  size: string = 'large';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n\n  public get classes(): string[] {\n    /* const type = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary'; */\n    let story;\n    switch (this.type) {\n      case 'primary':\n        story = 'storybook-button--primary'\n        break;\n      case 'secondary':\n        story = 'storybook-button--secondary'\n        break;\n      case 'tertiary':\n        story = 'storybook-button--tertiary'\n        break;\n      case 'ghost':\n        story = 'storybook-button--ghost'\n        break;\n      case 'danger':\n        story = 'storybook-button--danger'\n        break;\n      case 'tertiary-danger':\n        story = 'storybook-button--tertiary-danger'\n        break;\n      case 'ghost-danger':\n        story = 'storybook-button--ghost-danger'\n        break;\n\n      default:\n        story = 'storybook-button--primary'\n        break;\n    }\n    return ['storybook-button', `storybook-button--${this.size}`, story];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -173,7 +173,74 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 59
+                        "line": 63
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckboxComponent",
+            "id": "component-CheckboxComponent-d81e4d0a93853566ed386e72e99f9f52",
+            "file": "src/stories/checkbox.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-checkbox",
+            "styleUrls": [
+                "./checkbox.css"
+            ],
+            "styles": [],
+            "template": "<label    type=\"checkbox\"\n    [ngClass]=\"classes\"\n    class=\"checkbox__container txt-label\">\n    <span class=\"checkbox__label\">{{ label }}</span>\n    <input type=\"checkbox\" checked=\"checked\">\n    <span class=\"checkmark\"></span>\n  </label>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "'Checkbox label'",
+                    "line": 37
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'storybook-checkbox--normal'",
+                    "line": 28,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter < Event > ()",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 43,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-checkbox',\n  template: `<label\n    type=\"checkbox\"\n    [ngClass]=\"classes\"\n    class=\"checkbox__container txt-label\">\n    <span class=\"checkbox__label\">{{ label }}</span>\n    <input type=\"checkbox\" checked=\"checked\">\n    <span class=\"checkmark\"></span>\n  </label>`,\n  styleUrls: ['./checkbox.css'],\n})\nexport default class CheckboxComponent {\n\n  /**\n   * \n   */\n  @Input()\n  type: string = 'storybook-checkbox--normal';\n\n  /*\n\n\n  /*\n   * @required\n   */\n  @Input()\n  label = 'Checkbox label';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n\n  public get classes(): string[] {\n\n    let story;\n    switch (this.type) {\n      case 'normal':\n        story = 'storybook-checkbox--normal'\n        break;\n      case 'indeterminate':\n        story = 'storybook-checkbox--indeterminate'\n        break;\n      case 'disabled':\n        story = 'storybook-checkbox--disabled'\n        break;\n      case 'noLabel':\n        story = 'storybook-checkbox--noLabel'\n        break;\n    \n\n      default:\n        story = 'storybook-checkbox--normal'\n        break;\n    }\n    return ['storybook-checkbox', story];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".checkbox__container {\n    display: inline-flex;\n    padding-left: 1.5rem;\n    cursor: pointer;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    margin-bottom: .5rem;\n  }\n\n  .checkbox__container.storybook-checkbox--noLabel .checkbox__label {\n    display: none;\n  }\n\n  .checkbox__container  input {\n    opacity: 0;\n    cursor: pointer;\n    height: 0;\n    width: 0;\n  }\n\n  .checkmark {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 1rem;\n    width: 1rem;\n    background-color: #fff;\n    border: 1px solid var(--c-grey-9);\n}\n\n  .storybook-checkbox--disabled .checkmark {\n    border: 1px solid var(--c-grey-4);\n  }\n\n  .checkbox__container :hover input ~ .checkmark {\n    background-color: #ccc;\n  }\n\n  .checkbox__container input:checked ~ .checkmark {\n    background-color: var(--c-primary-6);\n  }\n\n  .checkbox__container.storybook-checkbox--disabled input:checked ~ .checkmark {\n    background-color: var(--c-grey-4);\n  }\n\n  .checkmark:after {\n    content: \"\";\n    position: absolute;\n    display: none;\n}\n\n  .checkbox__container input:checked ~ .checkmark:after {\n    display: block;\n  }\n\n  .checkbox__container .checkmark:after {\n    left: 4px;\n    top: 1px;\n    width: 3px;\n    height: 7px;\n    border: 1px solid white;\n    border-width: 0 2px 2px 0;\n    -webkit-transform: rotate(45deg);\n    -ms-transform: rotate(45deg);\n    transform: rotate(45deg);\n}\n\n  .storybook-checkbox--indeterminate .checkmark:after {\n    left: 3px;\n    top: 4px;\n    width: 8px;\n    height: 2px;\n    border: 1px solid white;\n    border-width: 0 0 2px 0;\n    transform: rotate(0deg);\n    -moz-transform: rotate(0deg);\n    -o-transform: rotate(0deg);\n    -webkit-transform: rotate(0deg);\n    -ms-transform: rotate(0deg);\n}",
+                    "styleUrl": "./checkbox.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 46
                     }
                 }
             }
@@ -249,6 +316,82 @@
                 }
             ],
             "stylesData": ""
+        },
+        {
+            "name": "LinkComponent",
+            "id": "component-LinkComponent-1613309f45cd6d09cc01c8b081dc9c3b",
+            "file": "src/stories/link.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-link",
+            "styleUrls": [
+                "./link.css"
+            ],
+            "styles": [],
+            "template": "<a class=\"link\"     type=\"link\"\n     (click)=\"onClick.emit($event)\"\n     [ngClass]=\"classes\"\n   >\n   {{ label }}\n </a>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "'Link'",
+                    "description": "<p>Texto del link</p>\n",
+                    "line": 40
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'large'",
+                    "description": "<p>El tamaño debe coincidir con el del texto al que acompañan. Small para labels y helpers, Medium y Large para textos tipo txt-01 y txt-02.</p>\n",
+                    "line": 32,
+                    "type": "string"
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'storybook-link--normal'",
+                    "description": "<p>Normal: Tipo por defecto. Pueden ir unidos a un icono.\nInline: Se utilizan dentro de un párrafo o frase. No deben ir unidos a un icono.</p>\n",
+                    "line": 25,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter < Event > ()",
+                    "description": "<p>Optional click handler.</p>\n",
+                    "line": 47,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {\n    Component,\n    Input,\n    Output,\n    EventEmitter\n  } from '@angular/core';\n  \n  @Component({\n    selector: 'storybook-link',\n    template: ` <a class=\"link\"\n      type=\"link\"\n      (click)=\"onClick.emit($event)\"\n      [ngClass]=\"classes\"\n    >\n    {{ label }} \n  </a>`,\n    styleUrls: ['./link.css'],\n  })\n  export default class LinkComponent {\n    /** \n    * Normal: Tipo por defecto. Pueden ir unidos a un icono.\n    * Inline: Se utilizan dentro de un párrafo o frase. No deben ir unidos a un icono.\n    */\n    @Input()\n    type: string = 'storybook-link--normal';\n\n\n    /** \n    * El tamaño debe coincidir con el del texto al que acompañan. Small para labels y helpers, Medium y Large para textos tipo txt-01 y txt-02.\n    */\n    @Input()\n    size: string = 'large';\n  \n    /**\n     * Texto del link\n     *\n     * @required\n     */\n    @Input()\n    label = 'Link';\n    \n\n    /**\n     * Optional click handler.\n     */\n    @Output()\n    onClick = new EventEmitter < Event > ();\n  \n  \n    public get classes(): string[] {\n      \n      return ['storybook-link', `storybook-link--${this.size}`, `storybook-link--${this.type}`];\n    }\n  }\n  ",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-link {\n  font-size: .875rem;\n  line-height: 1.1125em;\n  font-weight: 600;\n  letter-spacing: .16px;\n  color: var(--c-primary-7);\n}\n\n.storybook-link:hover {\n  text-decoration: underline;\n}\n\n.storybook-link:active {\n  text-decoration: underline;\n  color: var(--c-grey-8);\n}\n\n.storybook-link:visited {\n  color: var(--c-secondary-5);\n}\n\n.storybook-link:disabled {\n  color: var(--c-grey-4);\n}\n\n.storybook-link--inline {\n  text-decoration: underline;\n}\n\n.storybook-link--small {\n  font-size: .75rem;\n  line-height: 1em;\n  font-weight: 600;\n  letter-spacing: .32px;\n}\n\n.storybook-link--large {\n  font-size: 1rem;\n  line-height: 1.375em;\n  font-weight: 600;\n  letter-spacing: 0;\n}\n",
+                    "styleUrl": "./link.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 50
+                    }
+                }
+            }
         },
         {
             "name": "MenuComponent",
@@ -347,6 +490,74 @@
                 }
             ],
             "stylesData": ""
+        },
+        {
+            "name": "RadiobuttonComponent",
+            "id": "component-RadiobuttonComponent-cd7de036f13f389f26c253e521119e79",
+            "file": "src/stories/radio-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-radiobutton",
+            "styleUrls": [
+                "./radio-button.css"
+            ],
+            "styles": [],
+            "template": "<label      type=\"radiobutton\"\n      [ngClass]=\"classes\"\n      class=\"radiobutton__container txt-label\">\n      <span class=\"radiobutton__label\">{{ label }}</span>\n      <input type=\"radio\">\n      <span class=\"checkmark\"></span>\n    </label>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "'Radio-button label'",
+                    "line": 37
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'storybook-radiobutton--normal'",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 28,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter < Event > ()",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 43,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {\n    Component,\n    Input,\n    Output,\n    EventEmitter\n  } from '@angular/core';\n  \n  @Component({\n    selector: 'storybook-radiobutton',\n    template: `<label\n      type=\"radiobutton\"\n      [ngClass]=\"classes\"\n      class=\"radiobutton__container txt-label\">\n      <span class=\"radiobutton__label\">{{ label }}</span>\n      <input type=\"radio\">\n      <span class=\"checkmark\"></span>\n    </label>`,\n    styleUrls: ['./radio-button.css'],\n  })\n  export default class RadiobuttonComponent {\n  \n    /**\n     * Is this the principal call to action on the page?\n     */\n    @Input()\n    type: string = 'storybook-radiobutton--normal';\n  \n    /*\n  \n  \n    /*\n     * @required\n     */\n    @Input()\n    label = 'Radio-button label';\n  \n    /**\n     * Optional click handler\n     */\n    @Output()\n    onClick = new EventEmitter < Event > ();\n  \n  \n    public get classes(): string[] {\n  \n      let story;\n      switch (this.type) {\n        case 'normal':\n          story = 'storybook-radiobutton--normal'\n          break;\n        case 'disabled':\n          story = 'storybook-radiobutton--disabled'\n          break;\n  \n        default:\n          story = 'storybook-radiobutton--normal'\n          break;\n      }\n      return ['storybook-radiobutton', story];\n    }\n  }\n  ",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "/* transicion */\n\n.radiobutton__container {\n  display: inline-flex;\n  padding-left: 1.5rem;\n  cursor: pointer;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  margin-bottom: .5rem;\n}\n\n.radiobutton__container input {\n  opacity: 0;\n  cursor: pointer;\n}\n\n.checkmark {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 1.25rem;\n  width: 1.25rem;\n  background-color: #fff;\n  border: 1px solid var(--c-grey-9);\n  border-radius: 50%;\n}\n\n.storybook-radiobutton--disabled .checkmark {\n  border: 1px solid var(--c-grey-4);\n}\n\n.radiobutton__container :hover input~.checkmark {\n  background-color: white;\n}\n\n.radiobutton__container input:checked~.checkmark {\n  background-color: white;\n}\n\n.checkmark:after {\n  content: \"\";\n  position: absolute;\n  display: none;\n}\n\n.radiobutton__container input:checked~.checkmark:after {\n  display: block;\n}\n\n.radiobutton__container .checkmark:after {\n  left: 4px;\n  top: 4px;\n  width: 10px;\n  height: 10px;\n  border: none;\n  border-radius: 50%;\n  background-color: var(--c-primary-6);\n}\n\n.storybook-radiobutton--disabled.radiobutton__container .checkmark:after {\n  background-color: var(--c-grey-4);\n}\n",
+                    "styleUrl": "./radio-button.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 46
+                    }
+                }
+            }
         },
         {
             "name": "TabComponent",
@@ -460,7 +671,7 @@
         },
         {
             "name": "TagComponent",
-            "id": "component-TagComponent-4e90746279fbb2de5c0ebe7229397d4c",
+            "id": "component-TagComponent-133b50f4d6ed1fb02c5cef64e8cb8506",
             "file": "src/stories/tag.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -478,7 +689,7 @@
             "inputsClass": [
                 {
                     "name": "label",
-                    "defaultValue": "'Button'",
+                    "defaultValue": "'Tag text'",
                     "description": "<p>Button contents</p>\n",
                     "line": 32
                 },
@@ -506,11 +717,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-tag',\n  template: ` <span class=\"txt-label\"\n      [ngClass]=\"classes\"\n    >\n    {{ label }}\n  </span>`,\n  styleUrls: ['./tag.css'],\n})\nexport default class TagComponent {\n\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  type: string = 'storybook-tag--primary';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n  public get classes(): string[] {\n    /* const type = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary'; */\n    let story;\n    switch (this.type) {\n      case 'blue':\n        story = 'tag--blue'\n        break;\n      case 'green':\n        story = 'tag--green'\n        break;\n      case 'grey':\n        story = 'tag--grey'\n        break;\n      case 'orange':\n        story = 'tag--orange'\n        break;\n      case 'purple':\n        story = 'tag--purple'\n        break;\n      case 'red':\n        story = 'tag--red'\n        break;\n      case 'yellow':\n        story = 'tag--yellow'\n        break;\n\n      default:\n        story = 'tag--grey'\n        break;\n    }\n    return ['storybook-tag', story];\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter\n} from '@angular/core';\n\n@Component({\n  selector: 'storybook-tag',\n  template: ` <span class=\"txt-label\"\n      [ngClass]=\"classes\"\n    >\n    {{ label }}\n  </span>`,\n  styleUrls: ['./tag.css'],\n})\nexport default class TagComponent {\n\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  type: string = 'storybook-tag--primary';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Tag text';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter < Event > ();\n\n  public get classes(): string[] {\n    let story;\n    switch (this.type) {\n      case 'blue':\n        story = 'tag--blue'\n        break;\n      case 'green':\n        story = 'tag--green'\n        break;\n      case 'grey':\n        story = 'tag--grey'\n        break;\n      case 'orange':\n        story = 'tag--orange'\n        break;\n      case 'purple':\n        story = 'tag--purple'\n        break;\n      case 'red':\n        story = 'tag--red'\n        break;\n      case 'yellow':\n        story = 'tag--yellow'\n        break;\n\n      default:\n        story = 'tag--grey'\n        break;\n    }\n    return ['storybook-tag', story];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".storybook-tag {\n    display: inline-flex;\n    align-items: center;\n    height: 1.5rem;\n    line-height: 1.5em;\n    border-radius: 24px;\n    -webkit-border-radius: 24px;\n    -moz-border-radius: 24px;\n    -ms-border-radius: 24px;\n    -o-border-radius: 24px;\n    margin: .5rem;\n    padding: 0 0.75rem 0 0.75rem;\n}\n  \n  .tag--blue {\n    color: var(--c-tag-blue-txt);\n    background-color: var(--c-tag-blue-bg);\n}\n\n.tag--green {\n    color: var(--c-tag-green-txt);\n    background-color: var(--c-tag-green-bg);\n}\n\n.tag--grey {\n    color: var(--c-tag-grey-txt);\n    background-color: var(--c-tag-grey-bg);\n}\n\n.tag--orange {\n    color: var(--c-tag-orange-txt);\n    background-color: var(--c-tag-orange-bg);\n}\n\n.tag--purple {\n    color: var(--c-tag-purple-txt);\n    background-color: var(--c-tag-purple-bg);\n}\n\n.tag--red {\n    color: var(--c-tag-red-txt);\n    background-color: var(--c-tag-red-bg);\n}\n\n.tag--yellow {\n    color: var(--c-tag-yellow-txt);\n    background-color: var(--c-tag-yellow-bg);\n}",
                     "styleUrl": "./tag.css"
                 }
             ],
@@ -691,7 +902,7 @@
                 "name": "Blue",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -712,12 +923,20 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "environment",
+                "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
-                "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "file": "src/stories/Checkbox.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/RadioButton.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "environment",
@@ -726,6 +945,14 @@
                 "file": "src/environments/environment.prod.ts",
                 "type": "object",
                 "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
             },
             {
                 "name": "FilterDbDashboard",
@@ -763,7 +990,7 @@
                 "name": "Green",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -771,7 +998,23 @@
                 "name": "Grey",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Indeterminate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Checkbox.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Inline",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Link.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -780,6 +1023,14 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Link.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -808,6 +1059,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Medium",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Link.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "MenuExpanded",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -816,10 +1075,42 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "NoLabel",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Checkbox.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Checkbox.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Link.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/RadioButton.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Orange",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -835,7 +1126,7 @@
                 "name": "Purple",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -843,7 +1134,7 @@
                 "name": "Red",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -875,6 +1166,14 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Link.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -914,17 +1213,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Menu.stories.ts",
-                "type": "Story<Menu>",
-                "defaultValue": "(args: Menu) => ({\n  component: Menu,\n  props: args,\n})"
+                "file": "src/stories/Checkbox.stories.ts",
+                "type": "Story<Checkbox>",
+                "defaultValue": "(args: Checkbox) => ({\n    component: Checkbox,\n    props: args,\n  })"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Tab-group.stories.ts",
-                "type": "Story<TabGroup>",
-                "defaultValue": "(args: TabGroup) => ({\n  component: TabGroup,\n})"
+                "file": "src/stories/Link.stories.ts",
+                "type": "Story<Link>",
+                "defaultValue": "(args: Link) => ({\n    component: Link,\n    props: args,\n  })"
             },
             {
                 "name": "Template",
@@ -938,6 +1237,30 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Menu.stories.ts",
+                "type": "Story<Menu>",
+                "defaultValue": "(args: Menu) => ({\n  component: Menu,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/RadioButton.stories.ts",
+                "type": "Story<Radiobutton>",
+                "defaultValue": "(args: Radiobutton) => ({\n    component: Radiobutton,\n    props: args,\n  })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Tag.stories.ts",
+                "type": "Story<Tag>",
+                "defaultValue": "(args: Tag) => ({\n    component: Tag,\n    props: args,\n  })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/Tab.stories.ts",
                 "type": "Story<Tab>",
                 "defaultValue": "(args: Tab) => ({\n  component: Tab,\n  props: args,\n})"
@@ -946,17 +1269,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/TextInput.stories.ts",
-                "type": "Story<TextInput>",
-                "defaultValue": "(args: TextInput) => ({\n  component: TextInput,\n  props: args,\n})"
+                "file": "src/stories/Tab-group.stories.ts",
+                "type": "Story<TabGroup>",
+                "defaultValue": "(args: TabGroup) => ({\n  component: TabGroup,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
-                "type": "Story<Tag>",
-                "defaultValue": "(args: Tag) => ({\n    component: Tag,\n    props: args,\n  })"
+                "file": "src/stories/TextInput.stories.ts",
+                "type": "Story<TextInput>",
+                "defaultValue": "(args: TextInput) => ({\n  component: TextInput,\n  props: args,\n})"
             },
             {
                 "name": "Tertiary",
@@ -994,7 +1317,7 @@
                 "name": "Yellow",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/tag.stories.ts",
+                "file": "src/stories/Tag.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             }
@@ -1029,12 +1352,12 @@
                     "defaultValue": "(args: Tab) => ({\n  component: Tab,\n  props: args,\n})"
                 }
             ],
-            "src/stories/tag.stories.ts": [
+            "src/stories/Tag.stories.ts": [
                 {
                     "name": "Blue",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1042,7 +1365,7 @@
                     "name": "Green",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1050,7 +1373,7 @@
                     "name": "Grey",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1058,7 +1381,7 @@
                     "name": "Orange",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1066,7 +1389,7 @@
                     "name": "Purple",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1074,7 +1397,7 @@
                     "name": "Red",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1082,7 +1405,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "Story<Tag>",
                     "defaultValue": "(args: Tag) => ({\n    component: Tag,\n    props: args,\n  })"
                 },
@@ -1090,7 +1413,7 @@
                     "name": "Yellow",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/tag.stories.ts",
+                    "file": "src/stories/Tag.stories.ts",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 }
@@ -1210,14 +1533,72 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/environments/environment.ts": [
+            "src/stories/Checkbox.stories.ts": [
                 {
-                    "name": "environment",
+                    "name": "Disabled",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
+                    "file": "src/stories/Checkbox.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Indeterminate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Checkbox.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "NoLabel",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Checkbox.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Normal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Checkbox.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Checkbox.stories.ts",
+                    "type": "Story<Checkbox>",
+                    "defaultValue": "(args: Checkbox) => ({\n    component: Checkbox,\n    props: args,\n  })"
+                }
+            ],
+            "src/stories/RadioButton.stories.ts": [
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/RadioButton.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Normal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/RadioButton.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/RadioButton.stories.ts",
+                    "type": "Story<Radiobutton>",
+                    "defaultValue": "(args: Radiobutton) => ({\n    component: Radiobutton,\n    props: args,\n  })"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -1228,6 +1609,16 @@
                     "file": "src/environments/environment.prod.ts",
                     "type": "object",
                     "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
                 }
             ],
             "src/stories/Filter-db.stories.ts": [
@@ -1246,6 +1637,56 @@
                     "file": "src/stories/Filter-db.stories.ts",
                     "type": "Story<FilterDb>",
                     "defaultValue": "(args: FilterDb) => ({\n  component: FilterDb,\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Link.stories.ts": [
+                {
+                    "name": "Inline",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Link.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Link.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Medium",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Link.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Normal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Link.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Link.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Link.stories.ts",
+                    "type": "Story<Link>",
+                    "defaultValue": "(args: Link) => ({\n    component: Link,\n    props: args,\n  })"
                 }
             ],
             "src/stories/Header.stories.ts": [
@@ -1366,7 +1807,7 @@
         ]
     },
     "coverage": {
-        "count": 4,
+        "count": 5,
         "status": "low",
         "files": [
             {
@@ -1528,6 +1969,56 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Checkbox.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Checkbox.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Indeterminate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Checkbox.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoLabel",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Checkbox.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Normal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Checkbox.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/Filter-db.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1568,6 +2059,66 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Inline",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Medium",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Normal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/Menu.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1599,6 +2150,36 @@
             },
             {
                 "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/RadioButton.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/RadioButton.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Normal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/RadioButton.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1658,6 +2239,86 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Blue",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Green",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Grey",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Orange",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Purple",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Red",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Tag.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Yellow",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/TextInput.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1697,6 +2358,15 @@
                 "status": "good"
             },
             {
+                "filePath": "src/stories/checkbox.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CheckboxComponent",
+                "coveragePercent": 25,
+                "coverageCount": "1/4",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/filter-db.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1715,6 +2385,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/link.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LinkComponent",
+                "coveragePercent": 80,
+                "coverageCount": "4/5",
+                "status": "very-good"
+            },
+            {
                 "filePath": "src/stories/menu.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1731,6 +2410,15 @@
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
                 "status": "low"
+            },
+            {
+                "filePath": "src/stories/radio-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RadiobuttonComponent",
+                "coveragePercent": 50,
+                "coverageCount": "2/4",
+                "status": "medium"
             },
             {
                 "filePath": "src/stories/tab-group.component.ts",
@@ -1758,86 +2446,6 @@
                 "coveragePercent": 75,
                 "coverageCount": "3/4",
                 "status": "good"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Blue",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Green",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Grey",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Orange",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Purple",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Red",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/tag.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Yellow",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
             },
             {
                 "filePath": "src/stories/text-input.component.ts",

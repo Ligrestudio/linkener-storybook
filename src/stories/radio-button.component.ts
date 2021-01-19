@@ -14,7 +14,7 @@ import {
       [ngClass]="classes"
       class="radiobutton__container txt-label">
       <span class="radiobutton__label">{{ label }}</span>
-      <input type="radio" checked="checked">
+      <input type="radio">
       <span class="checkmark"></span>
     </label>`,
     styleUrls: ['./radio-button.css'],
@@ -22,7 +22,7 @@ import {
   export default class RadiobuttonComponent {
   
     /**
-     * Is this the principal call to action on the page?
+     * 
      */
     @Input()
     type: string = 'storybook-radiobutton--normal';
